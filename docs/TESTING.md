@@ -67,7 +67,7 @@ done
 
 Nine Python tests check specification drift, a complete backend report and seven incomplete or invalid report scenarios. All tests, dependency checks, compilation and 15 CLI help checks pass. There is no Python API test suite. Live scraping, local-model inference and video regeneration require additional services and are outside these checks.
 
-`.github/workflows/ci.yml` runs the frontend, full backend and Python checks in three jobs. It uses pinned official actions, dependency caches, timeouts and read-only repository permissions. Docker is mandatory for the backend job. The workflow passes actionlint validation; no hosted GitHub Actions run has been dispatched and it performs no publishing or deployment.
+`.github/workflows/ci.yml` runs the frontend, full backend and Python checks in three jobs. It uses pinned official actions, dependency caches, timeouts and read-only repository permissions. Docker is mandatory for the backend job. The workflow passes actionlint validation. The [first public GitHub Actions run](https://github.com/daley-tyler/university-course-planner/actions/runs/40799691667) passed all three jobs on 29 October 2026. The workflow performs no publishing or deployment.
 
 ## Screenshots and limits
 

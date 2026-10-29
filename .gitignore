@@ -1,0 +1,110 @@
+# ───────────────────────────────
+#  Build Artifacts
+# ───────────────────────────────
+target/
+build/
+out/
+dist/
+node_modules/
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# ───────────────────────────────
+#  Maven / Gradle
+# ───────────────────────────────
+.mvn/wrapper/maven-wrapper.jar
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+
+# ───────────────────────────────
+#  Spring Boot / Logs
+# ───────────────────────────────
+*.log
+*.tmp
+*.bak
+*.swp
+*.orig
+*.rej
+*.class
+
+# ───────────────────────────────
+#  Environment Files
+# ───────────────────────────────
+.env
+.env.*
+*.env.local
+*.env.development
+*.env.production/
+application-local.properties
+application-local.yml
+
+# ───────────────────────────────
+#  Frontend Artifacts
+# ───────────────────────────────
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+*.tsbuildinfo
+*.eslintcache
+.vite/
+.cache/
+coverage/
+.DS_Store
+
+# ───────────────────────────────
+#  Docker / Compose
+# ───────────────────────────────
+docker-compose.override.yml
+docker-compose.local.yml
+.docker/
+*.pid
+
+# ───────────────────────────────
+#  IDE / Editors
+# ───────────────────────────────
+.idea/
+*.iws
+*.iml
+*.ipr
+.vscode/
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# ───────────────────────────────
+#  OS Files
+# ───────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+/tools/bulletin_ai/tools/bulletin_ai/lint/
+/tools/bulletin_ai/repairs/
+/SSH_PRIVATE_KEY
+/SSH_PRIVATE_KEY_TEST
+/logs/
+
+!.env.example
+!backend/src/main/resources/application-local.properties
+.claude/
+
+# Runtime logs, Python caches and downloaded CI credentials
+**/logs/
+__pycache__/
+*.py[cod]
+.secure_files/
+*.pem
+*.key
+.venv/

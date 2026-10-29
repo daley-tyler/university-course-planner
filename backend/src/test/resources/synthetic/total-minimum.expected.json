@@ -1,0 +1,62 @@
+{
+  "name": "Program Requirements",
+  "kind": "ALL_OF",
+  "doubleCountAllowed": true,
+  "children": [
+    {
+      "name": "Invented workshop",
+      "kind": "ALL_OF",
+      "doubleCountAllowed": true,
+      "children": [
+        {
+          "name": "Required Courses",
+          "kind": "ALL_OF",
+          "doubleCountAllowed": true,
+          "children": [
+            {
+              "name": "SYN 113",
+              "kind": "LEAF_COURSES",
+              "doubleCountAllowed": true,
+              "children": [],
+              "courseOptions": [
+                {
+                  "subjectCode": "SYN",
+                  "courseNumber": "113"
+                }
+              ],
+              "sourceRef": "#a"
+            },
+            {
+              "name": "SYN 227",
+              "kind": "LEAF_COURSES",
+              "doubleCountAllowed": true,
+              "children": [],
+              "courseOptions": [
+                {
+                  "subjectCode": "SYN",
+                  "courseNumber": "227"
+                }
+              ],
+              "sourceRef": "#b"
+            }
+          ],
+          "courseOptions": [],
+          "sourceRef": "#a"
+        },
+        {
+          "name": "Total Credit Hours",
+          "kind": "CREDIT_AT_LEAST",
+          "doubleCountAllowed": true,
+          "children": [],
+          "courseOptions": [],
+          "sourceRef": "#total",
+          "creditMin": 17
+        }
+      ],
+      "courseOptions": [],
+      "sourceRef": "#table"
+    }
+  ],
+  "courseOptions": [],
+  "sourceUrl": "https://catalog.example.edu/synthetic/total-minimum/"
+}

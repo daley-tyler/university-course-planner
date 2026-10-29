@@ -1,0 +1,12 @@
+/fixtures/
+/parsed/
+/lint/
+/llm/
+/aggregate/
+/repairs/
+/repaired/
+/review/
+/golden_diff/
+__pycache__/
+.venv/
+.env

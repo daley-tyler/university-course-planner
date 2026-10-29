@@ -1,0 +1,74 @@
+{
+  "name": "Program Requirements",
+  "kind": "ALL_OF",
+  "doubleCountAllowed": true,
+  "children": [
+    {
+      "name": "Invented workshop",
+      "kind": "ALL_OF",
+      "doubleCountAllowed": true,
+      "children": [
+        {
+          "name": "Tracks",
+          "kind": "ANY_OF",
+          "doubleCountAllowed": true,
+          "children": [
+            {
+              "name": "A: Rover track",
+              "kind": "TRACK_OPTION",
+              "doubleCountAllowed": true,
+              "children": [
+                {
+                  "name": "SYN 113",
+                  "kind": "LEAF_COURSES",
+                  "doubleCountAllowed": true,
+                  "children": [],
+                  "courseOptions": [
+                    {
+                      "subjectCode": "SYN",
+                      "courseNumber": "113"
+                    }
+                  ],
+                  "sourceRef": "#a"
+                }
+              ],
+              "courseOptions": [],
+              "notes": "A: Rover track",
+              "sourceRef": "#track-a"
+            },
+            {
+              "name": "B: Mural track",
+              "kind": "TRACK_OPTION",
+              "doubleCountAllowed": true,
+              "children": [
+                {
+                  "name": "SYN 227",
+                  "kind": "LEAF_COURSES",
+                  "doubleCountAllowed": true,
+                  "children": [],
+                  "courseOptions": [
+                    {
+                      "subjectCode": "SYN",
+                      "courseNumber": "227"
+                    }
+                  ],
+                  "sourceRef": "#b"
+                }
+              ],
+              "courseOptions": [],
+              "notes": "B: Mural track",
+              "sourceRef": "#track-b"
+            }
+          ],
+          "courseOptions": [],
+          "sourceRef": "#tracks",
+          "nrequired": 1
+        }
+      ],
+      "courseOptions": [],
+      "sourceRef": "#table"
+    }
+  ],
+  "courseOptions": [],
+  "sourceUrl": "https://catalog.example.edu/synthetic/track-options/"
+}

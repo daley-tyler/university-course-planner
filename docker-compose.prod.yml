@@ -1,0 +1,70 @@
+services:
+  # ───────────────────────────────
+  #  PostgreSQL Database
+  # ───────────────────────────────
+  db:
+    image: postgres:16-alpine
+    container_name: postgres-db
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    ports:
+      - "55432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME} -q"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  # ───────────────────────────────
+  #  Spring Boot Backend (API)
+  # ───────────────────────────────
+  backend:
+    image: ${REGISTRY_IMAGE}/backend:latest
+    container_name: course-planner-api
+    restart: always
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      SPRING_PROFILES_ACTIVE: prod
+      SMTP_USERNAME: ${SMTP_USERNAME}
+      SMTP_PASSWORD: ${SMTP_PASSWORD}
+      SMTP_TO: ${SMTP_TO}
+      SMTP_FROM: ${SMTP_FROM}
+      CAS_PROVIDER_KEY: ${CAS_PROVIDER_KEY}
+      CAS_SERVICE_URL: ${CAS_SERVICE_URL}
+      CAS_LOGIN_URL: ${CAS_LOGIN_URL}
+      CAS_VALIDATE_URL: ${CAS_VALIDATE_URL}
+      CAS_USER_EMAIL_DOMAIN: ${CAS_USER_EMAIL_DOMAIN}
+      COURSE_CATALOG_BASE_URL: ${COURSE_CATALOG_BASE_URL}
+      BULLETIN_CURRENT_ROOT: ${BULLETIN_CURRENT_ROOT}
+      BULLETIN_ARCHIVE_ROOT: ${BULLETIN_ARCHIVE_ROOT}
+    ports:
+      - "8080:8080"
+
+  # ───────────────────────────────
+  #  React Frontend (nginx)
+  # ───────────────────────────────
+  frontend:
+    image: ${REGISTRY_IMAGE}/frontend:latest
+    container_name: course-planner-web
+    depends_on:
+      - backend
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /etc/ssl/course-planner:/etc/ssl/course-planner:ro
+
+volumes:
+  postgres_data:

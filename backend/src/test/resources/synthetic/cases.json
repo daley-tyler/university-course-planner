@@ -1,0 +1,122 @@
+[
+  {
+    "slug": "unheaded-courses",
+    "purpose": "Default section and complete ordered course membership"
+  },
+  {
+    "slug": "header-minimum",
+    "purpose": "Hours stored outside a header label"
+  },
+  {
+    "slug": "header-range",
+    "purpose": "Both bounds of header hours"
+  },
+  {
+    "slug": "header-count-and-hours",
+    "purpose": "Simultaneous count and credit range"
+  },
+  {
+    "slug": "header-single-choice",
+    "purpose": "Single-choice header with credits"
+  },
+  {
+    "slug": "header-parenthetical",
+    "purpose": "Parenthetical selection count and clean label"
+  },
+  {
+    "slug": "choose-three",
+    "purpose": "Explicit comment count"
+  },
+  {
+    "slug": "take-both",
+    "purpose": "Required pair is not an alternative"
+  },
+  {
+    "slug": "select-all",
+    "purpose": "All listed options remain required"
+  },
+  {
+    "slug": "minimum-credit-comment",
+    "purpose": "Word-based credit minimum"
+  },
+  {
+    "slug": "credit-range-comment",
+    "purpose": "Selection credit interval"
+  },
+  {
+    "slug": "maximum-credit-comment",
+    "purpose": "Upper bound without invented lower bound"
+  },
+  {
+    "slug": "duration-not-count",
+    "purpose": "Duration must not become a course count"
+  },
+  {
+    "slug": "these-four-courses",
+    "purpose": "Explicit count retained with hours column"
+  },
+  {
+    "slug": "alternative-rows",
+    "purpose": "Adjacent OR rows form alternatives, preserving both codes"
+  },
+  {
+    "slug": "paired-links",
+    "purpose": "Two course links in a row must both be completed"
+  },
+  {
+    "slug": "total-minimum",
+    "purpose": "Total constraint coexists with course membership"
+  },
+  {
+    "slug": "total-range",
+    "purpose": "Total constraint coexists with course membership"
+  },
+  {
+    "slug": "level-minimum",
+    "purpose": "Level filter and credits are retained together"
+  },
+  {
+    "slug": "level-hours-cap",
+    "purpose": "Caps remain constraints alongside required courses"
+  },
+  {
+    "slug": "level-course-cap",
+    "purpose": "Caps remain constraints alongside required courses"
+  },
+  {
+    "slug": "group-course-cap",
+    "purpose": "Caps remain constraints alongside required courses"
+  },
+  {
+    "slug": "attached-footnote",
+    "purpose": "Referenced policy appears on its course once"
+  },
+  {
+    "slug": "scoped-footnote-numbers",
+    "purpose": "Restarted numbering does not overwrite another section"
+  },
+  {
+    "slug": "unreferenced-policy",
+    "purpose": "Unreferenced policy is preserved rather than lost"
+  },
+  {
+    "slug": "pruned-selector-policy",
+    "purpose": "Policy survives pruning an empty selector"
+  },
+  {
+    "slug": "header-footnote",
+    "purpose": "Header policy retains the double-counting flag"
+  },
+  {
+    "slug": "narrative-overlap-cap",
+    "purpose": "Narrative policy remains visible with its overlap cap"
+  },
+  {
+    "slug": "connector-precedence",
+    "purpose": "AND binds within an OR option; no course is lost"
+  },
+  {
+    "slug": "track-options",
+    "purpose": "Independent track alternatives preserve their own children"
+  }
+]

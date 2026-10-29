@@ -1,0 +1,62 @@
+{
+  "name": "Program Requirements",
+  "kind": "ALL_OF",
+  "doubleCountAllowed": true,
+  "children": [
+    {
+      "name": "Invented workshop",
+      "kind": "ALL_OF",
+      "doubleCountAllowed": true,
+      "children": [
+        {
+          "name": "At most two courses from the amber set",
+          "kind": "COURSE_CAP",
+          "doubleCountAllowed": true,
+          "children": [],
+          "courseOptions": [],
+          "sourceRef": "#rule",
+          "nrequired": 2
+        },
+        {
+          "name": "Required Courses",
+          "kind": "ALL_OF",
+          "doubleCountAllowed": true,
+          "children": [
+            {
+              "name": "SYN 113",
+              "kind": "LEAF_COURSES",
+              "doubleCountAllowed": true,
+              "children": [],
+              "courseOptions": [
+                {
+                  "subjectCode": "SYN",
+                  "courseNumber": "113"
+                }
+              ],
+              "sourceRef": "#a"
+            },
+            {
+              "name": "SYN 227",
+              "kind": "LEAF_COURSES",
+              "doubleCountAllowed": true,
+              "children": [],
+              "courseOptions": [
+                {
+                  "subjectCode": "SYN",
+                  "courseNumber": "227"
+                }
+              ],
+              "sourceRef": "#b"
+            }
+          ],
+          "courseOptions": [],
+          "sourceRef": "#a"
+        }
+      ],
+      "courseOptions": [],
+      "sourceRef": "#table"
+    }
+  ],
+  "courseOptions": [],
+  "sourceUrl": "https://catalog.example.edu/synthetic/group-course-cap/"
+}

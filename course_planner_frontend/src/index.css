@@ -1,0 +1,91 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --color-brandPrimary: #18344b;
+  --color-brandSurface: #fffdf8;
+  --color-brandInk: #243342;
+  --color-brandAccent: #7c5e28;
+  --color-brandWash: #f1ede4;
+  --color-brandGold: #e1c58b;
+  --color-brandBorder: #dcd6c9;
+  --color-background: #fffdf8;
+  --color-foreground: #243342;
+  --color-card: #fffdf8;
+  --color-card-foreground: #243342;
+  --color-popover: #fffdf8;
+  --color-popover-foreground: #243342;
+  --color-primary: #18344b;
+  --color-primary-foreground: #fffdf8;
+  --color-secondary: #f1ede4;
+  --color-secondary-foreground: #18344b;
+  --color-muted: #f1ede4;
+  --color-muted-foreground: #626b70;
+  --color-accent: #eee5d2;
+  --color-accent-foreground: #18344b;
+  --color-destructive: #b42335;
+  --color-destructive-foreground: #ffffff;
+  --color-border: #dcd6c9;
+  --color-input: #ccc5b6;
+  --color-ring: #7c5e28;
+}
+
+body {
+  margin: 0;
+  font-family: "IBM Plex Sans", "Helvetica Neue", sans-serif;
+  color: var(--color-brandInk);
+  background: #f4f1e9;
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-display {
+  font-family: "Fraunces", "Times New Roman", serif;
+}
+
+::selection {
+  color: #18344b;
+  background: #e1c58b;
+}
+
+:where(a, button):focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+.campus-hero {
+  isolation: isolate;
+  background: #18344b;
+}
+
+.campus-poster,
+.campus-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: url("/videos/campus-background.jpg") center / cover;
+  z-index: -3;
+}
+
+.campus-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(90deg, rgba(10, 29, 44, .91) 0%, rgba(10, 29, 44, .76) 45%, rgba(10, 29, 44, .28) 100%);
+}
+
+.plan-summary {
+  border-top: 3px solid #c4a466;
+}
+
+@media (max-width: 640px) {
+  .campus-hero::after {
+    background: linear-gradient(90deg, rgba(10, 29, 44, .88), rgba(10, 29, 44, .65));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .campus-video { display: none; }
+}

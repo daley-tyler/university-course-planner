@@ -1,0 +1,64 @@
+{
+  "name": "Program Requirements",
+  "kind": "ALL_OF",
+  "doubleCountAllowed": true,
+  "children": [
+    {
+      "name": "Invented workshop",
+      "kind": "ALL_OF",
+      "doubleCountAllowed": true,
+      "children": [
+        {
+          "name": "Required Courses",
+          "kind": "ALL_OF",
+          "doubleCountAllowed": true,
+          "children": [
+            {
+              "name": "SYN 113",
+              "kind": "LEAF_COURSES",
+              "doubleCountAllowed": true,
+              "children": [],
+              "courseOptions": [
+                {
+                  "subjectCode": "SYN",
+                  "courseNumber": "113"
+                }
+              ],
+              "sourceRef": "#a"
+            },
+            {
+              "name": "SYN 227",
+              "kind": "LEAF_COURSES",
+              "doubleCountAllowed": true,
+              "children": [],
+              "courseOptions": [
+                {
+                  "subjectCode": "SYN",
+                  "courseNumber": "227"
+                }
+              ],
+              "sourceRef": "#b"
+            }
+          ],
+          "courseOptions": [],
+          "sourceRef": "#a"
+        }
+      ],
+      "courseOptions": [],
+      "sourceRef": "#table"
+    },
+    {
+      "name": "Only five credits may count toward both the rover and mural requirements.",
+      "kind": "NOTE_ONLY",
+      "doubleCountAllowed": true,
+      "children": [],
+      "courseOptions": [],
+      "notes": "Only five credits may count toward both the rover and mural requirements.",
+      "sourceRef": "#narrative",
+      "sourceUrl": "https://catalog.example.edu/synthetic/narrative-overlap-cap/",
+      "doubleCountCap": 5
+    }
+  ],
+  "courseOptions": [],
+  "sourceUrl": "https://catalog.example.edu/synthetic/narrative-overlap-cap/"
+}

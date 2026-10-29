@@ -1,0 +1,56 @@
+{
+  "name": "Program Requirements",
+  "kind": "ALL_OF",
+  "doubleCountAllowed": true,
+  "children": [
+    {
+      "name": "Invented workshop",
+      "kind": "ALL_OF",
+      "doubleCountAllowed": true,
+      "children": [
+        {
+          "name": "Choose two courses",
+          "kind": "N_OF",
+          "doubleCountAllowed": true,
+          "children": [
+            {
+              "name": "SYN 113",
+              "kind": "LEAF_COURSES",
+              "doubleCountAllowed": true,
+              "children": [],
+              "courseOptions": [
+                {
+                  "subjectCode": "SYN",
+                  "courseNumber": "113"
+                }
+              ],
+              "sourceRef": "#a"
+            },
+            {
+              "name": "SYN 227",
+              "kind": "LEAF_COURSES",
+              "doubleCountAllowed": true,
+              "children": [],
+              "courseOptions": [
+                {
+                  "subjectCode": "SYN",
+                  "courseNumber": "227"
+                }
+              ],
+              "sourceRef": "#b"
+            }
+          ],
+          "courseOptions": [],
+          "sourceRef": "#rule",
+          "creditMin": 6,
+          "creditMax": 9,
+          "nrequired": 2
+        }
+      ],
+      "courseOptions": [],
+      "sourceRef": "#table"
+    }
+  ],
+  "courseOptions": [],
+  "sourceUrl": "https://catalog.example.edu/synthetic/header-count-and-hours/"
+}

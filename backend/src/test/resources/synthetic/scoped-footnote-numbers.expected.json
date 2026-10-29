@@ -1,0 +1,73 @@
+{
+  "name": "Program Requirements",
+  "kind": "ALL_OF",
+  "doubleCountAllowed": true,
+  "children": [
+    {
+      "name": "Amber studio",
+      "kind": "ALL_OF",
+      "doubleCountAllowed": true,
+      "children": [
+        {
+          "name": "Required Courses",
+          "kind": "ALL_OF",
+          "doubleCountAllowed": true,
+          "children": [
+            {
+              "name": "SYN 113",
+              "kind": "LEAF_COURSES",
+              "doubleCountAllowed": true,
+              "children": [],
+              "courseOptions": [
+                {
+                  "subjectCode": "SYN",
+                  "courseNumber": "113"
+                }
+              ],
+              "sourceRef": "#a",
+              "footnoteText": "Amber studio uses the spring showcase."
+            }
+          ],
+          "courseOptions": [],
+          "sourceRef": "#a"
+        }
+      ],
+      "courseOptions": [],
+      "sourceRef": "#amber"
+    },
+    {
+      "name": "Cobalt studio",
+      "kind": "ALL_OF",
+      "doubleCountAllowed": true,
+      "children": [
+        {
+          "name": "Required Courses",
+          "kind": "ALL_OF",
+          "doubleCountAllowed": true,
+          "children": [
+            {
+              "name": "SYN 227",
+              "kind": "LEAF_COURSES",
+              "doubleCountAllowed": true,
+              "children": [],
+              "courseOptions": [
+                {
+                  "subjectCode": "SYN",
+                  "courseNumber": "227"
+                }
+              ],
+              "sourceRef": "#b",
+              "footnoteText": "Cobalt studio uses the autumn showcase."
+            }
+          ],
+          "courseOptions": [],
+          "sourceRef": "#b"
+        }
+      ],
+      "courseOptions": [],
+      "sourceRef": "#cobalt"
+    }
+  ],
+  "courseOptions": [],
+  "sourceUrl": "https://catalog.example.edu/synthetic/scoped-footnote-numbers/"
+}

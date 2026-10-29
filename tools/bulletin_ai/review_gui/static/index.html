@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bulletin Review Queue</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Bulletin Review</p>
+        <h1>Requirement Parser QA</h1>
+      </div>
+      <div class="topbar-actions">
+        <button id="refreshQueue" class="ghost-button">Reload Queue</button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <aside class="panel list-panel">
+        <div class="panel-header">
+          <h2>Queue</h2>
+          <span id="queueCount" class="pill">0</span>
+        </div>
+        <div class="filters">
+          <input id="searchInput" type="search" placeholder="Search program or slug" />
+          <div class="filter-row">
+            <label>
+              Status
+              <select id="statusFilter">
+                <option value="all">All</option>
+                <option value="pending">Pending</option>
+                <option value="accepted">Accepted</option>
+                <option value="needs-work">Needs Work</option>
+                <option value="rejected">Rejected</option>
+              </select>
+            </label>
+            <label>
+              Min score
+              <input id="minScore" type="number" min="0" placeholder="0" />
+            </label>
+          </div>
+          <label class="checkbox">
+            <input id="goldOnly" type="checkbox" />
+            Gold mismatches only
+          </label>
+        </div>
+        <div id="queueList" class="queue-list"></div>
+      </aside>
+
+      <section class="panel detail-panel">
+        <div id="emptyState" class="empty-state">
+          <p class="empty-title">Select a program to review</p>
+          <p class="empty-subtitle">The right panel will show HTML, parsed JSON, and QA signals.</p>
+        </div>
+
+        <div id="detailView" class="detail hidden">
+          <div class="detail-header">
+            <div>
+              <p id="detailCatalog" class="eyebrow"></p>
+              <h2 id="detailTitle"></h2>
+              <p id="detailSlug" class="muted"></p>
+            </div>
+            <div class="detail-actions">
+              <a id="detailSource" class="ghost-button" href="#" target="_blank" rel="noreferrer">Open Bulletin</a>
+              <button id="openSnippet" class="ghost-button">Open Snippet</button>
+            </div>
+          </div>
+
+          <div class="status-row">
+            <div class="status-meta">
+              <span class="pill" id="detailScore">Score</span>
+              <span class="pill muted" id="detailReasons"></span>
+            </div>
+            <div class="status-controls">
+              <label>
+                Status
+                <select id="statusSelect">
+                  <option value="pending">Pending</option>
+                  <option value="accepted">Accepted</option>
+                  <option value="needs-work">Needs Work</option>
+                  <option value="rejected">Rejected</option>
+                </select>
+              </label>
+              <button id="saveStatus" class="primary-button">Save</button>
+              <button id="acceptGold" class="ghost-button">Accept as Gold</button>
+            </div>
+          </div>
+
+          <div class="note-row">
+            <label for="reviewNote">LLM Guidance Note</label>
+            <textarea id="reviewNote" rows="3" placeholder="Describe what should be fixed (e.g., choice groups are split, notes duplicated, etc.)"></textarea>
+          </div>
+
+          <div class="grid">
+            <div class="card">
+              <h3>Snippet</h3>
+              <iframe id="snippetFrame" sandbox="allow-same-origin"></iframe>
+            </div>
+            <div class="card">
+              <h3>Signals</h3>
+              <div id="signals"></div>
+            </div>
+          </div>
+
+          <div class="accordion">
+            <details open>
+              <summary>Parsed Tree (Readable)</summary>
+              <div id="parsedTree" class="tree-view"></div>
+            </details>
+            <details>
+              <summary>Repaired Tree (Readable)</summary>
+              <div id="repairedTree" class="tree-view"></div>
+            </details>
+            <details>
+              <summary>Parsed Tree (Raw JSON)</summary>
+              <pre id="parsedJson"></pre>
+            </details>
+            <details>
+              <summary>Repaired Tree (Raw JSON)</summary>
+              <pre id="repairedJson"></pre>
+            </details>
+            <details>
+              <summary>Golden Diff</summary>
+              <pre id="goldDiffJson"></pre>
+            </details>
+            <details>
+              <summary>Golden Expected</summary>
+              <pre id="goldExpectedJson"></pre>
+            </details>
+            <details>
+              <summary>Lint</summary>
+              <pre id="lintJson"></pre>
+            </details>
+            <details>
+              <summary>LLM Report</summary>
+              <pre id="llmJson"></pre>
+            </details>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

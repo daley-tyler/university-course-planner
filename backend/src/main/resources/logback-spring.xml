@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!-- ================================================================ -->
+    <!-- PROPERTIES                                                        -->
+    <!-- ================================================================ -->
+    <springProperty scope="context" name="LOG_PATH" source="logging.file.path" defaultValue="logs"/>
+    <springProperty scope="context" name="SMTP_USERNAME" source="SMTP_USERNAME"/>
+    <springProperty scope="context" name="SMTP_PASSWORD" source="SMTP_PASSWORD"/>
+    <springProperty scope="context" name="SMTP_TO" source="SMTP_TO" defaultValue="alerts@example.com"/>
+    <springProperty scope="context" name="SMTP_FROM" source="SMTP_FROM" defaultValue="course-planner@example.com"/>
+
+    <property name="CONSOLE_PATTERN"
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"/>
+    <property name="COLOR_PATTERN"
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %highlight(%-5level) %cyan(%logger{36}) - %msg%n"/>
+
+    <!-- ================================================================ -->
+    <!-- APPENDERS — ROLLING FILE (shared across profiles)                -->
+    <!-- ================================================================ -->
+    <appender name="ROLLING_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/app.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/app.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <maxFileSize>20MB</maxFileSize>
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>500MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${CONSOLE_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="ERROR_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/error.log</file>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/error.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <maxFileSize>20MB</maxFileSize>
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>200MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${CONSOLE_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- ================================================================ -->
+    <!-- DEV PROFILE — colorized human-readable console                   -->
+    <!-- ================================================================ -->
+    <springProfile name="!prod">
+        <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder>
+                <pattern>${COLOR_PATTERN}</pattern>
+            </encoder>
+        </appender>
+
+        <root level="INFO">
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="ROLLING_FILE"/>
+            <appender-ref ref="ERROR_FILE"/>
+        </root>
+    </springProfile>
+
+    <!-- ================================================================ -->
+    <!-- PROD PROFILE — plain console (Docker captures stdout)            -->
+    <!-- ================================================================ -->
+    <springProfile name="prod">
+        <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder>
+                <pattern>${CONSOLE_PATTERN}</pattern>
+            </encoder>
+        </appender>
+
+        <!-- Email alert on every ERROR -->
+        <appender name="EMAIL" class="ch.qos.logback.classic.net.SMTPAppender">
+            <smtpHost>smtp.gmail.com</smtpHost>
+            <smtpPort>587</smtpPort>
+            <STARTTLS>true</STARTTLS>
+            <username>${SMTP_USERNAME}</username>
+            <password>${SMTP_PASSWORD}</password>
+            <to>${SMTP_TO}</to>
+            <from>${SMTP_FROM}</from>
+            <subject>ERROR in Course Planner API: %logger{36} - %msg</subject>
+            <layout class="ch.qos.logback.classic.PatternLayout">
+                <pattern>${CONSOLE_PATTERN}</pattern>
+            </layout>
+            <!-- Include up to 10 preceding log lines for context -->
+            <cyclicBufferTracker class="ch.qos.logback.core.spi.CyclicBufferTracker">
+                <bufferSize>10</bufferSize>
+            </cyclicBufferTracker>
+            <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+                <level>ERROR</level>
+            </filter>
+        </appender>
+
+        <root level="INFO">
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="ROLLING_FILE"/>
+            <appender-ref ref="ERROR_FILE"/>
+            <appender-ref ref="EMAIL"/>
+        </root>
+    </springProfile>
+
+    <!-- ================================================================ -->
+    <!-- LOGGER LEVELS                                                     -->
+    <!-- ================================================================ -->
+    <!-- Suppress noisy framework loggers -->
+    <logger name="org.springframework" level="WARN"/>
+    <logger name="org.hibernate" level="ERROR"/>
+    <logger name="org.flywaydb" level="ERROR"/>
+    <logger name="com.zaxxer.hikari" level="WARN"/>
+
+    <!-- Application packages at DEBUG -->
+    <logger name="com.courseplanner.api" level="DEBUG"/>
+
+</configuration>

@@ -1,0 +1,87 @@
+name: Validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  frontend:
+    name: Frontend tests, lint and build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: course_planner_frontend
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: course_planner_frontend/package-lock.json
+      - run: npm ci
+      - run: npm test
+      - run: npm run lint
+      - run: npm run build
+
+  backend:
+    name: Backend tests and package
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad # v6
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+          cache-dependency-path: backend/pom.xml
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7
+        with:
+          python-version: '3.12'
+      - name: Require Docker for PostgreSQL integration tests
+        run: docker info
+      - name: Run the full Maven suite and package the API
+        working-directory: backend
+        run: ./mvnw --batch-mode --no-transfer-progress clean verify
+      - name: Reject missing or skipped application tests
+        run: python scripts/verify_backend_reports.py
+
+  python-tools:
+    name: Python tooling checks
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: tools/bulletin_ai/requirements.txt
+      - run: python -m pip install -r tools/bulletin_ai/requirements.txt
+      - run: python -m pip check
+      - run: python -m unittest discover -s tests -v
+      - name: Compile utilities and check their dependencies
+        run: |
+          python -m compileall -q scripts tools tests
+          python -c "import bs4, lxml.etree, requests, tqdm, psycopg"
+      - name: Check command-line entry points without external services
+        run: |
+          for script in tools/bulletin_ai/*.py tools/media/*.py tools/bulletin_ai/review_gui/server.py; do
+            python "$script" --help > /dev/null
+          done

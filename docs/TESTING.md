@@ -40,7 +40,7 @@ PostgreSQL tests run real Flyway migrations and validate the JPA schema. They co
 On macOS with Docker Desktop, the review used:
 
 ```bash
-DOCKER_HOST=unix:///Users/tyler/.docker/run/docker.sock \
+DOCKER_HOST="unix://${HOME}/.docker/run/docker.sock" \
 TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE=/var/run/docker.sock \
 JAVA_HOME=/Library/Java/JavaVirtualMachines/temurin-21.jdk/Contents/Home \
 ./mvnw --batch-mode --no-transfer-progress clean verify

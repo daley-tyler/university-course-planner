@@ -1,8 +1,8 @@
 # University Course Planner
 
-A full stack course planning application with catalog search, program requirements and semester scheduling.
+University Course Planner lets students search a course catalog, check program requirements and compare semester schedules. It uses React and TypeScript for the interface, a Java Spring Boot API and PostgreSQL for the catalog.
 
-I worked on this application as part of a university senior design team. This is my portfolio demo, with generic branding and an invented catalog so it can run independently of university services. I have continued improving the parser, planner behavior, tests and local setup. [Project background](docs/PROVENANCE.md) explains the team origins and the scope of this copy.
+I worked on the original application as part of a university senior design team. For this demo, I improved the requirements parser, fixed bugs in the planner and added regression tests. It runs locally with an invented catalog. [Project background](docs/PROVENANCE.md) explains the team contributions and what is included here.
 
 ## Explore a study plan
 
@@ -77,7 +77,7 @@ I focused the portfolio improvements on defects that affect real planning: copie
 
 ## Validation
 
-The [GitHub Actions workflow](.github/workflows/ci.yml) is configured to run frontend tests, lint and a production build; the full Java/PostgreSQL test suite and API packaging; and Python tooling checks. The backend uses Java 21 and Maven. Python 3.12 is used for the optional utilities and test-report verification, not for the API. Nine Python validation tests check the synthetic specification and failure handling in the report verifier.
+The [GitHub Actions workflow](https://github.com/daley-tyler/university-course-planner/actions/workflows/ci.yml) runs frontend tests, lint and a production build; the full Java/PostgreSQL test suite and API packaging; and Python tooling checks. The backend uses Java 21 and Maven. Python 3.12 is used for the optional utilities and test-report verification, not for the API. Nine Python validation tests check the synthetic specification and failure handling in the report verifier.
 
 ```bash
 cd course_planner_frontend

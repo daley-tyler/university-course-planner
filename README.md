@@ -1,6 +1,6 @@
 # University Course Planner
 
-University Course Planner lets students search a course catalog, check program requirements and compare semester schedules. It uses React and TypeScript for the interface, a Java Spring Boot API and PostgreSQL for the catalog.
+This University Course Planner lets students search a course catalog, check program requirements and compare semester schedules. It uses React and TypeScript for the interface, a Java Spring Boot API and PostgreSQL for the catalog.
 
 I worked on the original application as part of a university senior design team. For this demo, I improved the requirements parser, fixed bugs in the planner and added regression tests. It runs locally with an invented catalog. [Project background](docs/PROVENANCE.md) explains the team contributions and what is included here.
 
